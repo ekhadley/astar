@@ -10,5 +10,5 @@ CV2 used for drawing/displaying the grid and solver.
 Really optimizing anything but the solver wasnty really a priority, so the rendering of the world is actually way slower (like 10x or more) than
 the solve itself.
 
-##license
+## license
 if u use this code i need ur first born and a blood sacrifice. >:)
