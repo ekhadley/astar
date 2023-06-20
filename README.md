@@ -7,7 +7,7 @@ I'd never done a pathfinding/decision search algorithm so I wanted to do this to
 Astar1 is my naive approach to get the ideas down, the second is the faster one using a priority queue.
 The version in there now creates a pretty large/dense (slow) grid and fills it up with a few random walls and starts solving with the faster one.
 CV2 used for drawing/displaying the grid and solver.
-Really optimizing anything but the solver wasnty really a priority, so the rendering of the world is actually way slower (like 10x or more) than
+Really optimizing anything but the solver wasnty really a priority, so the rendering of the world is actually way slower (like 10x maybe) than
 the solve itself.
 
 ## license
