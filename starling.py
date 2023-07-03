@@ -3,7 +3,7 @@ import heapq
 import time
 from tqdm import tqdm
 
-gsize = (120, 120)
+gsize = (90, 90)
 gp = (random.randint(0, gsize[0]-1), random.randint(0, gsize[1]-1))
 start = (random.randint(0, gsize[0]-1), random.randint(0, gsize[1]-1))
 
@@ -63,8 +63,9 @@ def aStar2(g, start, dScale=1, heuristicScale=1, show=True):
     return constructPath(best, start), checked
 
 while 1:
-    g = grid(gsize, 9, start, goalPosition=gp)
-    for i in range(12):
+    gp = (random.randint(0, gsize[0]-1), random.randint(0, gsize[1]-1))
+    g = grid(gsize, 13, start, goalPosition=gp)
+    for i in range(6):
         o = [1, 0] if random.uniform(0,1) > .5 else [0, 1]
         wp1 = np.int32([random.randint(1, gsize[0]-1), random.randint(1, gsize[1]-1)])
         wp2 = np.int32([random.randint(1, gsize[0]-1), random.randint(1, gsize[1]-1)])
@@ -79,7 +80,7 @@ while 1:
         start = (random.randint(0, gsize[0]-1), random.randint(0, gsize[1]-1))
 
     t = time.time()
-    bp2, ch2 = aStar2(g, start, dScale=.8)
+    bp2, ch2 = aStar2(g, start, dScale=.5)
     print(f"aStar2 found: {bp2} in {time.time()-t:.5f}")
     cv2.imshow("g", g.show(steps=bp2, mark=np.nonzero(ch2)))
     cv2.waitKey(0)
