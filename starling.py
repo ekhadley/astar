@@ -1,7 +1,6 @@
 from grid import *
 import heapq
 import time
-from tqdm import tqdm
 
 gsize = (90, 90)
 gp = (random.randint(0, gsize[0]-1), random.randint(0, gsize[1]-1))
