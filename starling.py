@@ -2,7 +2,7 @@ from grid import *
 import heapq
 import time
 
-gsize = (90, 90)
+gsize = (80, 80)
 gp = (random.randint(0, gsize[0]-1), random.randint(0, gsize[1]-1))
 start = (random.randint(0, gsize[0]-1), random.randint(0, gsize[1]-1))
 
@@ -79,7 +79,7 @@ while 1:
         start = (random.randint(0, gsize[0]-1), random.randint(0, gsize[1]-1))
 
     t = time.time()
-    bp2, ch2 = aStar2(g, start, dScale=.5)
+    bp2, ch2 = aStar2(g, start, dScale=1)
     print(f"aStar2 found: {bp2} in {time.time()-t:.5f}")
     cv2.imshow("g", g.show(steps=bp2, mark=np.nonzero(ch2)))
     cv2.waitKey(0)
