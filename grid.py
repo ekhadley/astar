@@ -1,5 +1,6 @@
-import cv2, math, random, numpy as np
-
+import cv2
+import random
+import numpy as np
 
 class grid():
     def __init__(self, shape, tileSize, start, goalPosition=None):
@@ -9,7 +10,7 @@ class grid():
         self.tileSize = tileSize
         self.walls = []
         self.baseIm = None
-        if goalPosition==None:
+        if goalPosition is None:
             self.gp = (random.randint(0,width), random.randint(0,height))
         else: self.gp = goalPosition
 
@@ -18,7 +19,7 @@ class grid():
         if self.inBounds(pos) and pos not in self.walls:
             return np.linalg.norm(np.int32(pos)-np.int32(self.gp))
         else: return 1e6
-
+    
     def inBounds(self, pos):
         return -1<pos[0]<self.shape[0] and -1<pos[1]<self.shape[1]
 
@@ -36,14 +37,11 @@ class grid():
             p = (round(xs[i]), round(ys[i]))
             if p not in self.walls: self.addWall(p)
 
-    def inBounds(self, pos):
-        return -1<pos[0]<self.shape[0] and -1<pos[1]<self.shape[1]
-
     def show(self, scale=1, start=None, lines=True, grade=False, steps=None, mark=None):
         width, height = self.shape
         ts = round(self.tileSize*scale)
         gpx, gpy = self.gp
-        if type(self.baseIm) == type(None):
+        if self.baseIm is None:
             im = np.ones((ts*height, ts*width, 3))*.13
             im = cv2.rectangle(im, [ts*gpx, ts*gpy], [ts*(gpx+1), ts*(gpy+1)], color=(.35,1,0), thickness=-1)
             sx, sy = self.start
@@ -71,11 +69,11 @@ class grid():
                         im = cv2.circle(im, c, ts//10, color=(0, 1-w/maxx, w/maxx), thickness=-1)
             self.baseIm = im
         im = np.array(self.baseIm, copy=True)
-        if mark != None: 
+        if mark is not None: 
             for i in range(len(mark[0])):
                 mx, my = mark[1][i], mark[0][i]
                 im = cv2.circle(im, [ts*mx+ts//2, ts*my+ts//2], ts//2, color=(.6, .6, .6), thickness=1)
-        if steps != None:
+        if steps is not None:
             for i, (stepx, stepy) in enumerate(steps):
                 #im = cv2.circle(im, [stepsx, stepsy], round(ts/2), color=(1,1,1), thickness=2)
                 if i != 0: im = cv2.line(im, [ts*stepx+ts//2, ts*stepy+ts//2], [ts*steps[i-1][0]+ts//2, ts*steps[i-1][1]+ts//2], color=(1,1,1), thickness=ts//2)
@@ -104,7 +102,7 @@ class node():
         self.g = g
 
     def neighbors(self, others=None):
-        if self.nbrs == None:
+        if self.nbrs is None:
             self.nbrs = []
             for dir in dirs:
                 dx, dy = dir
